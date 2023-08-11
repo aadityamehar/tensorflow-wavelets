@@ -35,7 +35,7 @@ class DWT(layers.Layer):
         self.db2_hpf = tf.reshape(db2_hpf, (1, wavelet.dec_len, 1, 1))
 
         self.conv_type = "VALID"
-        self.border_padd = "SYMMETRIC"
+        self.border_padd = "CONSTANT"
 
     def build(self, input_shape):
         # filter dims should be bigger if input is not gray scale
@@ -120,7 +120,7 @@ class IDWT(layers.Layer):
         super(IDWT, self).__init__(**kwargs)
         # self._name = self.name + "_" + name
         self.pad_type = "VALID"
-        self.border_pad = "SYMMETRIC"
+        self.border_pad = "CONSTANT"
         self.concat = concat
         # get filter coeffs from 3rd party lib
         wavelet = pywt.Wavelet(wavelet_name)
